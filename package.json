@@ -1,0 +1,34 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "API",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "env-cmd -f ./config/dev.env nodemon src/index.js",
+    "test": "env-cmd -f ./config/test.env jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-personal:FranciscoGuilherme/Study.git"
+  },
+  "keywords": [
+    "api",
+    "rest"
+  ],
+  "author": "Francisco Guilherme",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http-status-codes": "^1.4.0",
+    "mongodb": "^3.5.8",
+    "mongoose": "^5.9.18",
+    "mongoose-unique-validator": "^2.0.3",
+    "validator": "^13.1.0"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0",
+    "jest": "^26.0.1",
+    "supertest": "^4.0.2"
+  }
+}
