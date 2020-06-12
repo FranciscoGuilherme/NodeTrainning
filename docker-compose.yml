@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+    node:
+        container_name: api
+        build: ./
+        ports:
+            - 3000:3000
+        env_file:
+            - ./config/dev.env
+        links:
+            - mongo
+
+    mongo:
+        container_name: db
+        image: mongo
+        ports:
+            - 27017:27017
