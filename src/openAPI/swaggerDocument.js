@@ -4,6 +4,12 @@ const getUserByIdSwagger = include('openAPI/usersSwagger/getUserByIdSwagger')
 const getUsersSwagger = include('openAPI/usersSwagger/getUsersSwagger')
 const patchUsersSwagger = include('openAPI/usersSwagger/patchUsersSwagger')
 
+const createTasksSwagger = include('openAPI/tasksSwagger/createTasksSwagger')
+const deleteTasksSwagger = include('openAPI/tasksSwagger/deleteTasksSwagger')
+const getTaskByIdSwagger = include('openAPI/tasksSwagger/getTaskByIdSwagger')
+const getTasksSwagger = include('openAPI/tasksSwagger/getTasksSwagger')
+const patchTasksSwagger = include('openAPI/tasksSwagger/patchTasksSwagger')
+
 const swaggerDocument = {
     openapi: '3.0.1',
     info: {
@@ -13,13 +19,24 @@ const swaggerDocument = {
     },
     servers: [
         {
-            'url': 'https://nice-node-api.herokuapp.com',
-            'description': 'Ambiente de homologação'
+            'url': 'https://{host}',
+            'variables': {
+                host: {
+                    enum: [
+                        process.env.PRD_HOST_ENVIRONMENT,
+                        process.env.STG_HOST_ENVIRONMENT
+                    ],
+                    default: process.env.STG_HOST_ENVIRONMENT
+                }
+            }
         }
     ],
     tags: [
         {
             name: 'Users'
+        },
+        {
+            name: 'Tasks'
         }
     ],
     paths: {
@@ -31,6 +48,15 @@ const swaggerDocument = {
             'get': getUserByIdSwagger,
             'patch': patchUsersSwagger,
             'delete': deleteUsersSwagger
+        },
+        '/tasks': {
+            'get': getTasksSwagger,
+            'post': createTasksSwagger
+        },
+        '/tasks/{id}': {
+            'get': getTaskByIdSwagger,
+            'patch': patchTasksSwagger,
+            'delete': deleteTasksSwagger
         }
     }
 }

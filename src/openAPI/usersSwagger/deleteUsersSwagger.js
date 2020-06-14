@@ -45,6 +45,22 @@ const deleteUsersSwagger = {
                     }
                 }
             }
+        },
+        [HttpStatus.NOT_FOUND]: {
+            description: 'Not Found',
+            content: {
+                'application/json': {
+                    schema: {
+                        type: 'object',
+                        properties: {
+                            message: {
+                                type: 'string',
+                                example: 'User not found on our system.'
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

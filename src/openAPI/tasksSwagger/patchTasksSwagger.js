@@ -1,9 +1,9 @@
 const HttpStatus = require('http-status-codes')
 
-const getUserByIdSwagger = {
-    tags: ['Users'],
-    description: 'Resgata um usuário pelo Id.',
-    operationId: 'getUserByIdController',
+const patchTasksSwagger = {
+    tags: ['Tasks'],
+    description: 'Atualiza uma tarefa pelo Id.',
+    operationId: 'patchTasksController',
     parameters: [
         {
             name: 'id',
@@ -15,6 +15,26 @@ const getUserByIdSwagger = {
             }
         }
     ],
+    requestBody: {
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        name: {
+                            type: 'string'
+                        },
+                        completed: {
+                            type: 'boolean'
+                        },
+                        description: {
+                            type: 'string'
+                        }
+                    }
+                }
+            }
+        }
+    },
     responses: {
         [HttpStatus.OK]: {
             description: 'OK',
@@ -23,19 +43,16 @@ const getUserByIdSwagger = {
                     schema: {
                         type: 'object',
                         properties: {
-                            age: {
-                                type: 'integer'
-                            },
                             _id: {
                                 type: 'string'
                             },
                             name: {
                                 type: 'string'
                             },
-                            email: {
-                                type: 'string'
+                            completed: {
+                                type: 'boolean'
                             },
-                            password: {
+                            description: {
                                 type: 'string'
                             },
                             __v: {
@@ -55,7 +72,7 @@ const getUserByIdSwagger = {
                         properties: {
                             message: {
                                 type: 'string',
-                                example: 'User not found on our system.'
+                                example: 'Task not found on our system.'
                             }
                         }
                     }
@@ -65,4 +82,4 @@ const getUserByIdSwagger = {
     }
 }
 
-module.exports = getUserByIdSwagger
+module.exports = patchTasksSwagger

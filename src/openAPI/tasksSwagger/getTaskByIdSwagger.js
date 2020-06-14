@@ -1,15 +1,15 @@
 const HttpStatus = require('http-status-codes')
 
-const getUserByIdSwagger = {
-    tags: ['Users'],
-    description: 'Resgata um usuário pelo Id.',
-    operationId: 'getUserByIdController',
+const getTaskByIdSwagger = {
+    tags: ['Tasks'],
+    description: 'Resgata uma tarefa pelo Id.',
+    operationId: 'getTaskByIdController',
     parameters: [
         {
             name: 'id',
             in: 'path',
             required: true,
-            description: 'O Id do usuário',
+            description: 'O Id da tarefa.',
             schema: {
                 type: 'string'
             }
@@ -23,19 +23,16 @@ const getUserByIdSwagger = {
                     schema: {
                         type: 'object',
                         properties: {
-                            age: {
-                                type: 'integer'
-                            },
                             _id: {
                                 type: 'string'
                             },
                             name: {
                                 type: 'string'
                             },
-                            email: {
-                                type: 'string'
+                            completed: {
+                                type: 'boolean'
                             },
-                            password: {
+                            description: {
                                 type: 'string'
                             },
                             __v: {
@@ -55,7 +52,7 @@ const getUserByIdSwagger = {
                         properties: {
                             message: {
                                 type: 'string',
-                                example: 'User not found on our system.'
+                                example: 'Task not found on our system.'
                             }
                         }
                     }
@@ -65,4 +62,4 @@ const getUserByIdSwagger = {
     }
 }
 
-module.exports = getUserByIdSwagger
+module.exports = getTaskByIdSwagger
