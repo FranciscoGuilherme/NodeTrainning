@@ -2,6 +2,7 @@ const HttpStatus = require('http-status-codes')
 
 const getUserByIdSwagger = {
     tags: ['Users'],
+    summary: 'Resgata um usuário pelo id',
     description: 'Resgata um usuário pelo Id.',
     operationId: 'getUserByIdController',
     parameters: [
@@ -18,51 +19,28 @@ const getUserByIdSwagger = {
     responses: {
         [HttpStatus.OK]: {
             description: 'OK',
-            content: {
-                'application/json': {
-                    schema: {
-                        type: 'object',
-                        properties: {
-                            age: {
-                                type: 'integer'
-                            },
-                            _id: {
-                                type: 'string'
-                            },
-                            name: {
-                                type: 'string'
-                            },
-                            email: {
-                                type: 'string'
-                            },
-                            password: {
-                                type: 'string'
-                            },
-                            __v: {
-                                type: 'integer'
-                            }
-                        }
-                    }
-                }
+            schema: {
+                $ref: '#/definitions/User'
             }
         },
         [HttpStatus.NOT_FOUND]: {
             description: 'Not Found',
-            content: {
-                'application/json': {
-                    schema: {
-                        type: 'object',
-                        properties: {
-                            message: {
-                                type: 'string',
-                                example: 'User not found on our system.'
-                            }
-                        }
+            schema: {
+                type: 'object',
+                properties: {
+                    message: {
+                        type: 'string',
+                        example: 'User not found on our system.'
                     }
                 }
             }
         }
-    }
+    },
+    security: [
+        {
+            api_key: []
+        }
+    ]
 }
 
 module.exports = getUserByIdSwagger

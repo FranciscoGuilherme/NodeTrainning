@@ -1,17 +1,7 @@
-const createUsersSwagger = include('openAPI/usersSwagger/createUsersSwagger')
-const deleteUsersSwagger = include('openAPI/usersSwagger/deleteUsersSwagger')
-const getUserByIdSwagger = include('openAPI/usersSwagger/getUserByIdSwagger')
-const getUsersSwagger = include('openAPI/usersSwagger/getUsersSwagger')
-const patchUsersSwagger = include('openAPI/usersSwagger/patchUsersSwagger')
-
-const createTasksSwagger = include('openAPI/tasksSwagger/createTasksSwagger')
-const deleteTasksSwagger = include('openAPI/tasksSwagger/deleteTasksSwagger')
-const getTaskByIdSwagger = include('openAPI/tasksSwagger/getTaskByIdSwagger')
-const getTasksSwagger = include('openAPI/tasksSwagger/getTasksSwagger')
-const patchTasksSwagger = include('openAPI/tasksSwagger/patchTasksSwagger')
+const router = include('openAPI/swaggerRouter')
 
 const swaggerDocument = {
-    openapi: '3.0.1',
+    swagger: '2.0',
     info: {
         version: '1.0.0',
         title: 'Node API',
@@ -33,30 +23,96 @@ const swaggerDocument = {
     ],
     tags: [
         {
-            name: 'Users'
+            name: 'Users',
+            description: 'Simples CRUD de usuários',
         },
         {
-            name: 'Tasks'
+            name: 'Tasks',
+            description: 'Simples CRUD de tarefas',
         }
     ],
     paths: {
         '/users': {
-            'get': getUsersSwagger,
-            'post': createUsersSwagger
+            'get': router.users.getUsersSwagger,
+            'post': router.users.createUsersSwagger
         },
         '/users/{id}': {
-            'get': getUserByIdSwagger,
-            'patch': patchUsersSwagger,
-            'delete': deleteUsersSwagger
+            'get': router.users.getUserByIdSwagger,
+            'patch': router.users.patchUsersSwagger,
+            'delete': router.users.deleteUsersSwagger
         },
         '/tasks': {
-            'get': getTasksSwagger,
-            'post': createTasksSwagger
+            'get': router.tasks.getTasksSwagger,
+            'post': router.tasks.createTasksSwagger
         },
         '/tasks/{id}': {
-            'get': getTaskByIdSwagger,
-            'patch': patchTasksSwagger,
-            'delete': deleteTasksSwagger
+            'get': router.tasks.getTaskByIdSwagger,
+            'patch': router.tasks.patchTasksSwagger,
+            'delete': router.tasks.deleteTasksSwagger
+        }
+    },
+    securityDefinitions: {
+        api_key: {
+            type: 'apiKey',
+            name: 'Token',
+            in: 'header'
+        }
+    },
+    definitions: {
+        User: {
+            type: 'object',
+            properties: {
+                _id: {
+                    type: 'integer',
+                    readOnly: true
+                },
+                age: {
+                    type: 'integer'
+                },
+                name: {
+                    type: 'string'
+                },
+                email: {
+                    type: 'string'
+                },
+                password: {
+                    type: 'string'
+                },
+                __v: {
+                    type: 'integer'
+                }
+            },
+            required: [
+                'name',
+                'email',
+                'password'
+            ]
+        }
+    },
+    components: {
+        schemas: {
+            Request: {
+                type: 'object',
+                properties: {
+                    age: {
+                        type: 'integer'
+                    },
+                    name: {
+                        type: 'string'
+                    },
+                    email: {
+                        type: 'string'
+                    },
+                    password: {
+                        type: 'string'
+                    }
+                },
+                required: [
+                    'name',
+                    'email',
+                    'password'
+                ]
+            }
         }
     }
 }
