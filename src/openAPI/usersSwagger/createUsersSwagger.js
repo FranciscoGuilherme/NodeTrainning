@@ -12,7 +12,7 @@ const createUsersSwagger = {
             description: 'Dados para um novo usuário',
             required: true,
             schema: {
-                $ref: '#/components/schemas/Request'
+                $ref: '#/components/schemas/User'
             }
         }
     ],

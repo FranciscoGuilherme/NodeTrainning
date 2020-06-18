@@ -87,11 +87,36 @@ const swaggerDocument = {
                 'email',
                 'password'
             ]
+        },
+        Task: {
+            type: 'object',
+            properties: {
+                _id: {
+                    type: 'integer',
+                    readOnly: true
+                },
+                name: {
+                    type: 'string'
+                },
+                completed: {
+                    type: 'boolean'
+                },
+                description: {
+                    type: 'string'
+                },
+                __v: {
+                    type: 'integer'
+                }
+            },
+            required: [
+                'name',
+                'completed'
+            ]
         }
     },
     components: {
         schemas: {
-            Request: {
+            User: {
                 type: 'object',
                 properties: {
                     age: {
@@ -111,6 +136,24 @@ const swaggerDocument = {
                     'name',
                     'email',
                     'password'
+                ]
+            },
+            Task: {
+                type: 'object',
+                properties: {
+                    name: {
+                        type: 'string'
+                    },
+                    completed: {
+                        type: 'boolean'
+                    },
+                    description: {
+                        type: 'string'
+                    }
+                },
+                required: [
+                    'name',
+                    'completed'
                 ]
             }
         }

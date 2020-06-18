@@ -2,6 +2,7 @@ const HttpStatus = require('http-status-codes')
 
 const deleteTasksSwagger = {
     tags: ['Tasks'],
+    summary: 'Deleta uma tarefa pelo Id',
     description: 'Deleta uma tarefa pelo Id.',
     operationId: 'deleteTasksController',
     parameters: [
@@ -18,48 +19,28 @@ const deleteTasksSwagger = {
     responses: {
         [HttpStatus.OK]: {
             description: 'OK',
-            content: {
-                'application/json': {
-                    schema: {
-                        type: 'object',
-                        properties: {
-                            _id: {
-                                type: 'string'
-                            },
-                            name: {
-                                type: 'string'
-                            },
-                            completed: {
-                                type: 'boolean'
-                            },
-                            description: {
-                                type: 'string'
-                            },
-                            __v: {
-                                type: 'integer'
-                            }
-                        }
-                    }
-                }
+            schema: {
+                $ref: '#/definitions/Task'
             }
         },
         [HttpStatus.NOT_FOUND]: {
             description: 'Not Found',
-            content: {
-                'application/json': {
-                    schema: {
-                        type: 'object',
-                        properties: {
-                            message: {
-                                type: 'string',
-                                example: 'Task not found on our system.'
-                            }
-                        }
+            schema: {
+                type: 'object',
+                properties: {
+                    message: {
+                        type: 'string',
+                        example: 'Task not found on our system.'
                     }
                 }
             }
         }
-    }
+    },
+    security: [
+        {
+            api_key: []
+        }
+    ]
 }
 
 module.exports = deleteTasksSwagger

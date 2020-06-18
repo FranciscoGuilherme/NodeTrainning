@@ -21,7 +21,7 @@ const patchUsersSwagger = {
             description: 'Dados para atualizar um usuário',
             required: true,
             schema: {
-                $ref: '#/components/schemas/Request'
+                $ref: '#/components/schemas/User'
             }
         }
     ],

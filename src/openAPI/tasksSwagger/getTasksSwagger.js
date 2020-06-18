@@ -2,40 +2,25 @@ const HttpStatus = require('http-status-codes')
 
 const getTasksSwagger = {
     tags: ['Tasks'],
+    summary: 'Resgata todos as tarefas',
     description: 'Resgata todos as tarefas.',
     operationId: 'getTasksController',
     responses: {
         [HttpStatus.OK]: {
             description: 'OK',
-            content: {
-                'application/json': {
-                    schema: {
-                        type: 'array',
-                        items: {
-                            type: 'object',
-                            properties: {
-                                _id: {
-                                    type: 'string'
-                                },
-                                name: {
-                                    type: 'string'
-                                },
-                                completed: {
-                                    type: 'boolean'
-                                },
-                                description: {
-                                    type: 'string'
-                                },
-                                __v: {
-                                    type: 'integer'
-                                }
-                            }
-                        }
-                    }
+            schema: {
+                type: 'array',
+                items: {
+                    $ref: '#/definitions/Task'
                 }
             }
         }
-    }
+    },
+    security: [
+        {
+            api_key: []
+        }
+    ]
 }
 
 module.exports = getTasksSwagger
