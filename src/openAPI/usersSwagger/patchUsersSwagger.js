@@ -2,6 +2,7 @@ const HttpStatus = require('http-status-codes')
 
 const patchUsersSwagger = {
     tags: ['Users'],
+    summary: 'Atualiza um usuário',
     description: 'Atualiza um usuário pelo Id.',
     operationId: 'patchUsersController',
     parameters: [
@@ -13,63 +14,42 @@ const patchUsersSwagger = {
             schema: {
                 type: 'string'
             }
+        },
+        {
+            in: 'body',
+            name: 'body',
+            description: 'Dados para atualizar um usuário',
+            required: true,
+            schema: {
+                $ref: '#/components/schemas/User'
+            }
         }
     ],
-    requestBody: {
-        content: {
-            'application/json': {
-                schema: {
-                    type: 'object',
-                    properties: {
-                        name: {
-                            type: 'string'
-                        },
-                        email: {
-                            type: 'string'
-                        },
-                        password: {
-                            type: 'string'
-                        },
-                        age: {
-                            type: 'integer'
-                        }
+    responses: {
+        [HttpStatus.OK]: {
+            description: 'OK',
+            schema: {
+                $ref: '#/definitions/User'
+            }
+        },
+        [HttpStatus.NOT_FOUND]: {
+            description: 'Not Found',
+            schema: {
+                type: 'object',
+                properties: {
+                    message: {
+                        type: 'string',
+                        example: 'User not found on our system.'
                     }
                 }
             }
         }
     },
-    responses: {
-        [HttpStatus.OK]: {
-            description: 'OK',
-            content: {
-                'application/json': {
-                    schema: {
-                        type: 'object',
-                        properties: {
-                            age: {
-                                type: 'integer'
-                            },
-                            _id: {
-                                type: 'string'
-                            },
-                            name: {
-                                type: 'string'
-                            },
-                            email: {
-                                type: 'string'
-                            },
-                            password: {
-                                type: 'string'
-                            },
-                            __v: {
-                                type: 'integer'
-                            }
-                        }
-                    }
-                }
-            }
+    security: [
+        {
+            api_key: []
         }
-    }
+    ]
 }
 
 module.exports = patchUsersSwagger

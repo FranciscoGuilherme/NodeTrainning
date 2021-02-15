@@ -1,17 +1,17 @@
 const HttpStatus = require('http-status-codes')
 
-const getUsersSwagger = {
-    tags: ['Users'],
-    summary: 'Resgata todos os usuários',
-    description: 'Resgata todos os usuários.',
-    operationId: 'getUsersController',
+const getTasksSwagger = {
+    tags: ['Tasks'],
+    summary: 'Resgata todos as tarefas',
+    description: 'Resgata todos as tarefas.',
+    operationId: 'getTasksController',
     responses: {
         [HttpStatus.OK]: {
             description: 'OK',
             schema: {
                 type: 'array',
                 items: {
-                    $ref: '#/definitions/User'
+                    $ref: '#/definitions/Task'
                 }
             }
         }
@@ -23,4 +23,4 @@ const getUsersSwagger = {
     ]
 }
 
-module.exports = getUsersSwagger
+module.exports = getTasksSwagger

@@ -1,16 +1,16 @@
 const HttpStatus = require('http-status-codes')
 
-const getUserByIdSwagger = {
-    tags: ['Users'],
-    summary: 'Resgata um usuário pelo id',
-    description: 'Resgata um usuário pelo Id.',
-    operationId: 'getUserByIdController',
+const deleteTasksSwagger = {
+    tags: ['Tasks'],
+    summary: 'Deleta uma tarefa pelo Id',
+    description: 'Deleta uma tarefa pelo Id.',
+    operationId: 'deleteTasksController',
     parameters: [
         {
             name: 'id',
             in: 'path',
             required: true,
-            description: 'O Id do usuário',
+            description: 'O Id da tarefa.',
             schema: {
                 type: 'string'
             }
@@ -20,7 +20,7 @@ const getUserByIdSwagger = {
         [HttpStatus.OK]: {
             description: 'OK',
             schema: {
-                $ref: '#/definitions/User'
+                $ref: '#/definitions/Task'
             }
         },
         [HttpStatus.NOT_FOUND]: {
@@ -30,7 +30,7 @@ const getUserByIdSwagger = {
                 properties: {
                     message: {
                         type: 'string',
-                        example: 'User not found on our system.'
+                        example: 'Task not found on our system.'
                     }
                 }
             }
@@ -43,4 +43,4 @@ const getUserByIdSwagger = {
     ]
 }
 
-module.exports = getUserByIdSwagger
+module.exports = deleteTasksSwagger

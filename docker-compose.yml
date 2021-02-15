@@ -3,12 +3,15 @@ version: "3"
 services:
     node:
         container_name: api
+        restart: always
         build: ./
-        ports:
-            - 3000:3000
         env_file:
             - ./config/dev.env
-        links:
+        ports:
+            - 3000:3000
+        volumes:
+            - .:/app
+        depends_on:
             - mongo
 
     mongo:
